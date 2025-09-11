@@ -4,14 +4,18 @@ import { CarouselSection } from "@/components/home/carouselSection"
 import UpComingMovies from "@/components/home/upComingMovies"
 import PopularMovies from "@/components/home/popularMovies"
 import  Footer from "@/components/start_and_end/footer"
+import { mockMovies } from "@/lib/constants"
 
-export default function MoviesList() {
+export default async function MoviesList() {
+  const getUpComingMovies=async()=>{
+
+  }
   return (
    
     <div className="w-[1440px] pl-[100px] h-fit">
       {/* <Loader></Loader> */}
        <CarouselSection />
-
+       {/* {mockMovies.map(())} */}
 
       {/* UPCOMING MOVIES */}
       <div className="p-0 mt-[52px]">
