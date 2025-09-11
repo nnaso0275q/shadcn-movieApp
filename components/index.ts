@@ -1,3 +1,6 @@
-export * from "@/components/home/loader"
+export * from "@/components/start_and_end/loader"
 export * from "@/components/home/carouselSection"
 export * from "@/components/home/upComingMovies"
+export * from "@/components/home/popularMovies"
+export * from "@/components/start_and_end/footer"
+export * from "@/components/start_and_end/genreDropDown"

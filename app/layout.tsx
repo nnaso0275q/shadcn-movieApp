@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/home/theme-provider"
 import { Layout } from "lucide-react";
+import  Loader  from "@/components/start_and_end/loader";
 
 
 
@@ -37,7 +38,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-           
+           <Loader></Loader>
             {children}
           </ThemeProvider>
         

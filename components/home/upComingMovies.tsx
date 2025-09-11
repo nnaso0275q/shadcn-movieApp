@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Star } from "lucide-react"
 
    const movies = [
-   {
+       {
     title: "Dear Santa",
     rating: 6.9,
     poster: "DearCanta.jpg", 
