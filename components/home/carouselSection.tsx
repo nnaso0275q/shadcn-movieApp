@@ -9,9 +9,9 @@
 //     return(
 //         <div>
 //  <Carousel>
-//    <CarouselContent 
+//    <CarouselContent
 //    className="flex w-[1440] h-[600]">
-      
+
 //        <CarouselItem><img src="carousel1.jpg"></img></CarouselItem>
 //      <CarouselItem><img src="carousel2.png"></img></CarouselItem>
 //      <CarouselItem><img src="carousel3.jpg"></img></CarouselItem>
@@ -19,23 +19,21 @@
 //   </CarouselContent>
 //      <CarouselPrevious />
 //      <CarouselNext />
-// </Carousel> 
+// </Carousel>
 // </div>
 //     )
-//  } 
+//  }
 
-
-
-"use client"
-import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
+"use client";
+import * as React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
 // const images=[
 // "carousel1.jpg",
@@ -43,37 +41,29 @@ import {
 // "carousel3.jpg"
 // ]
 
-
 export function CarouselSection() {
   return (
     <>
-    <Carousel className="w-screen">
-      <CarouselContent>
-        {Array.from({length: 5}).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
-                {/* <img className="object-cover aspect-[2.4/1] w-full h-full"></img> */}
-                </CardContent>
-              </Card>
-
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className="left-13" />
-      <CarouselNext className="right-13"/>
-    </Carousel>
+      <Carousel className="w-[1440px]">
+        <CarouselContent>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
+                    {/* <img className="object-cover aspect-[2.4/1] w-full h-full"></img> */}
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="left-13" />
+        <CarouselNext className="right-13" />
+      </Carousel>
     </>
-  )
+  );
 }
-
-
-
-
-
-
 
 // "use client"
 // import * as React from "react"
@@ -117,5 +107,3 @@ export function CarouselSection() {
 //     </div>
 //   )
 // }
-
-
