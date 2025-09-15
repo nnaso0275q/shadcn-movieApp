@@ -1,31 +1,31 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType } from "@/types";
 import { Star } from "lucide-react";
-import { title } from "process";
 
 type Props = {
   movies: MovieType[];
   title: string;
 };
 
-export default function UpComingMovies({ movies, title }: Props) {
+export default function TopRatedMovies({ movies, title }: Props) {
   return (
-    <div className=" mt-[52px] mx-[80px]">
-      <div className="flex mb-6 gap-[1080] justify-between">
+    <div className="mx-[80px] mt-[52px]">
+      <div className="flex gap-[1080] mb-6 justify-between">
         <h2 className="text-2xl font-bold">{title}</h2>
         <button className="text-sm  hover:underline">See more →</button>
       </div>
-      <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
+      {/* Movie List */}
+      <div className="flex md:grid-cols-5 gap-[32] flex-wrap ">
         {movies.slice(0, 10).map((movie, i) => (
           <Card
             key={i}
-            className="rounded-2xl shadow-md hover:shadow-lg transition w-[230px] bg-secondary p-0 gap-2"
+            className="rounded-2xl shadow-md hover:shadow-lg transition w-[230] bg-secondary p-0 gap-2"
           >
-            <CardContent className="p-0">
+            <CardContent className="p-0 ">
               <img
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.title}
-                className="w-[230px] object-cover rounded-t-2xl"
+                className="w-[230] object-cover rounded-t-2xl "
               />
             </CardContent>
             <CardFooter className="flex flex-col items-start p-3">

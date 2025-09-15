@@ -18,3 +18,13 @@ export type movieResponseType = {
   total_pages: number;
   results: MovieType[];
 };
+
+
+export type GenreType = {
+  id: number;
+  name: string;
+};
+
+export type GenreResponseType = {
+  genres: GenreType[];
+};

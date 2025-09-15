@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/home/theme-provider"
+import { ThemeProvider } from "@/components/home/theme-provider";
 import { Layout } from "lucide-react";
-import  Loader  from "@/components/start_and_end/loader";
-
-
+import Loader from "@/components/start_and_end/loader";
+import Footer from "@/components/start_and_end/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,16 +31,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-                <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-           <Loader></Loader>
-            {children}
-          </ThemeProvider>
-        
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Loader></Loader>
+
+          {children}
+          <Footer></Footer>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,58 +1,63 @@
-// import {
-//   Carousel,
-//   CarouselContent,
-//   CarouselItem,
-//   CarouselNext,
-//   CarouselPrevious,
-// } from "@/components/ui/carousel"
-// export const CarouselSection = ()=>{
-//     return(
-//         <div>
-//  <Carousel>
-//    <CarouselContent
-//    className="flex w-[1440] h-[600]">
-
-//        <CarouselItem><img src="carousel1.jpg"></img></CarouselItem>
-//      <CarouselItem><img src="carousel2.png"></img></CarouselItem>
-//      <CarouselItem><img src="carousel3.jpg"></img></CarouselItem>
-
-//   </CarouselContent>
-//      <CarouselPrevious />
-//      <CarouselNext />
-// </Carousel>
-// </div>
-//     )
-//  }
-
 "use client";
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MovieType } from "@/types";
 
-// const images=[
-// "carousel1.jpg",
-// "carousel2.png",
-// "carousel3.jpg"
-// ]
+type Props = {
+  movies: MovieType[];
+};
 
-export function CarouselSection() {
+export function CarouselSection({ movies }: Props) {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(Math.ceil(api.scrollSnapList().length / 4));
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
   return (
     <>
-      <Carousel className="w-[1440px]">
+      <Carousel setApi={setApi} className="w-[1440px]">
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+          {movies.map((movie, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
-                    {/* <img className="object-cover aspect-[2.4/1] w-full h-full"></img> */}
+                    <span className="text-4xl font-semibold">
+                      {movie.title}
+                    </span>
                   </CardContent>
+                  <div className="flex gap-2 mt-[50px] ml-[670px] ">
+                    {Array.from({ length: count }).map((_, index) => (
+                      <div
+                        onClick={() => {
+                          api?.scrollTo(index);
+                        }}
+                        key={index}
+                        className={`rounded-full size-[8px] ${
+                          index + 1 === current ? "bg-white" : "bg-gray-600"
+                        }`}
+                      ></div>
+                    ))}
+                  </div>
                 </Card>
               </div>
             </CarouselItem>
@@ -64,46 +69,3 @@ export function CarouselSection() {
     </>
   );
 }
-
-// "use client"
-// import * as React from "react"
-// import { Card, CardContent } from "@/components/ui/card"
-// import {
-//   Carousel,
-//   CarouselContent,
-//   CarouselItem,
-//   CarouselNext,
-//   CarouselPrevious,
-// } from "@/components/ui/carousel"
-
-// const images = [
-//   "/carousel1.jpg",
-//   "/carousel2.png",
-//   "/carousel3.jpg",
-// ]
-
-// export function CarouselSection() {
-//   return (
-//     <div className="relative w-[1440px] ">
-//       <Carousel className="w-full h-full">
-//         <CarouselContent className="h-full">
-//           {images.map((src, index) => (
-//             <CarouselItem key={index} className="h-full">
-//               <Card className="h-full">
-//                 <CardContent className="p-0 h-full">
-//                   <img
-//                     src={src}
-//                     alt={`carousel-${index}`}
-//                     className="w-full object-cover"
-//                   />
-//                 </CardContent>
-//               </Card>
-//             </CarouselItem>
-//           ))}
-//         </CarouselContent>
-//         <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10" />
-//         <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10" />
-//       </Carousel>
-//     </div>
-//   )
-// }

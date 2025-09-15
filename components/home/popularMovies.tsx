@@ -4,14 +4,19 @@ import { Star } from "lucide-react";
 
 type Props = {
   movies: MovieType[];
+  title: string;
 };
 
-export default function PopularMovies({ movies }: Props) {
+export default function PopularMovies({ movies, title }: Props) {
   return (
-    <div>
+    <div className="mx-[80px] mt-[52px]">
+      <div className="flex gap-[1080] mb-6 justify-between">
+        <h2 className="text-2xl font-bold">Popular</h2>
+        <button className="text-sm  hover:underline">See more →</button>
+      </div>
       {/* Movie List */}
       <div className="flex md:grid-cols-5 gap-[32] flex-wrap ">
-        {movies.map((movie, i) => (
+        {movies.slice(0, 10).map((movie, i) => (
           <Card
             key={i}
             className="rounded-2xl shadow-md hover:shadow-lg transition w-[230] bg-secondary p-0 gap-2"
