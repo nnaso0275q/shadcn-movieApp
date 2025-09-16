@@ -41,6 +41,7 @@ export function CarouselSection({ movies }: Props) {
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
+                    <img></img>
                     <span className="text-4xl font-semibold">
                       {movie.title}
                     </span>

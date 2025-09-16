@@ -17,7 +17,7 @@ import { getMovieGenres } from "../home/get-data";
 
 export default async function genreDropDown() {
   const GenreResponseType: GenreResponseType = await getMovieGenres();
-  console.log("GENRE RES", GenreResponseType);
+  console.log("GENRERES", GenreResponseType);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,8 +38,8 @@ export default async function genreDropDown() {
         <DropdownMenuItem className="ml-5 mt-4 hover: !bg-transparent flex flex-wrap gap-4">
           {GenreResponseType.genres.map((genre) => (
             <Link
-              key={genre.id}
               href={`/genre?id=${genre.id}&name=${genre.name}`}
+              key={genre.id}
               className="flex items-center "
             >
               <Badge variant={"outline"}>
