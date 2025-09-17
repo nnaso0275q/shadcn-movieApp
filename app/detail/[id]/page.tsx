@@ -10,11 +10,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetail = await getMovieDetail(id);
   console.log(movieDetail);
 
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default DetailDynamicPage;

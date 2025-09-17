@@ -3,11 +3,16 @@ import { Input } from "@/components/ui/input";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import GenreDropDown from "@/components/start_and_end/genreDropDown";
 import { Search } from "lucide-react";
+import Link from "next/link";
 export default function Loader() {
   return (
     <div className="w-full h-fit ">
       <div className="max-w-[1280px] flex my-[11.5] justify-between m-auto mx-[80px]">
-        <img src="movie z.svg"></img>
+        <Link href={"/"}>
+          {" "}
+          <img src="movie z.svg"></img>
+        </Link>
+
         <DropdownMenu></DropdownMenu>
         <div className="flex gap-5 items-center">
           <GenreDropDown></GenreDropDown>

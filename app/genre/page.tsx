@@ -18,7 +18,6 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
   );
   return (
     <div>
-      {name}
       <div className="flex flex-wrap gap-3">
         <MoviesContainer movies={filteredMoviesResponse.results} title={name} />
       </div>

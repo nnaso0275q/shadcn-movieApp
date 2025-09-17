@@ -81,3 +81,68 @@ export const getMovieGenres = async () => {
     const data = await res.json();
     return data;
   };
+
+  export const getNOwPlayingMovies = async () => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+ 
+export const getPopularMovies = async () => {
+  const res= await fetch (
+    `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "applocation/json",
+        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      },
+ 
+    }
+  );
+  const data = await res.json();
+  console.log('DATA IRLEE', data)
+  return data;
+};
+ 
+ 
+export const getTopRatedMovies = async () => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+ 
+ 
+export const getUpcomingMovies = async () => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+

@@ -42,9 +42,6 @@ export function CarouselSection({ movies }: Props) {
                 <Card>
                   <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
                     <img></img>
-                    <span className="text-4xl font-semibold">
-                      {movie.title}
-                    </span>
                   </CardContent>
                   <div className="flex gap-2 mt-[50px] ml-[670px] ">
                     {Array.from({ length: count }).map((_, index) => (
