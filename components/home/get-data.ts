@@ -95,6 +95,25 @@ export const getMovieGenres = async () => {
     return data;
   };
 
+
+
+    export const getMovieByDetail = async (id: string) => {
+    const res = await fetch(
+      `https://api.themoviedb.org/3//movie/${id}/credits?language=en-US`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  };
+
+
+
   export const getNowPlayingMovies = async () => {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
