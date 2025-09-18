@@ -23,7 +23,7 @@ export const getMoviesList = async (listName: string): Promise<movieResponseType
   const data = await res.json();
   return {
     ...data,
-    results: data.results || [], // undefined бол хоосон array
+    results: data.results || [], 
   };
 };
 
@@ -95,7 +95,7 @@ export const getMovieGenres = async () => {
     return data;
   };
 
-  export const getNOwPlayingMovies = async () => {
+  export const getNowPlayingMovies = async () => {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
     {

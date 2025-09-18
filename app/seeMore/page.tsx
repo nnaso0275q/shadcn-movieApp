@@ -1,5 +1,5 @@
 import {
-  getNOwPlayingMovies,
+  getNowPlayingMovies,
   getPopularMovies,
   getUpcomingMovies,
   getTopRatedMovies,
@@ -17,7 +17,7 @@ const SeeMorePage = async ({ searchParams: { title } }: Props) => {
   let movies: movieResponseType;
 
   if (title === "Now Playing") {
-    movies = await getNOwPlayingMovies();
+    movies = await getNowPlayingMovies();
   } else if (title === "Upcoming") {
     movies = await getUpcomingMovies();
   } else if (title === "Top Rated") {
@@ -27,11 +27,8 @@ const SeeMorePage = async ({ searchParams: { title } }: Props) => {
   }
 
   return (
-    <div className="py-10 w-full">
-      <h2 className="text-3xl font-bold px-10 mb-5  max-sm:text-2xl">
-        "Results of {title}"
-      </h2>
-
+    <div className="w-full">
+      <h2 className="text-3xl font-bold px-10 mb-5  max-sm:text-2xl"></h2>
       <MoviesContainer movies={movies!.results} title={title} />
     </div>
   );

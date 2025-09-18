@@ -33,8 +33,8 @@ export default function MoviesContainer({ movies, title }: Props) {
                   className="w-[230px] object-cover rounded-t-2xl"
                 />
               </CardContent>
-              <CardFooter className="flex flex-col p-3">
-                <div className="flex items-center gap-1 text-sm text-gray-700 mb-1">
+              <CardFooter className="flex flex-col p-3 items-start">
+                <div className="flex gap-1 text-sm text-gray-700 mb-1">
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   <span className="text-muted-foreground">
                     {movie.vote_average}/10

@@ -15,7 +15,7 @@ type Props = {
   movies: MovieType[];
 };
 
-export function CarouselSection({ movies=[] }: Props) {
+export function CarouselSection({ movies = [] }: Props) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -40,7 +40,7 @@ export function CarouselSection({ movies=[] }: Props) {
             <CarouselItem key={index}>
               <div className="p-1">
                 <Card>
-                  <CardContent className="flex aspect-video max-h-[600] items-center justify-center p-6">
+                  <CardContent className="flex aspect-video max-h-[600]  justify-center p-6">
                     <img></img>
                   </CardContent>
                   <div className="flex gap-2 mt-[50px] ml-[670px] ">

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -23,10 +22,11 @@ export default async function GenreDropDown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          <ChevronDown/>Genre
+          <ChevronDown />
+          Genre
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[577px] h-[333px]" align="start">
+      <DropdownMenuContent className="w-[500px] h-[300px]" align="start">
         <DropdownMenuLabel className="inter text-2xl font-semibold ml-4 pl-5">
           Genres
         </DropdownMenuLabel>
@@ -41,7 +41,7 @@ export default async function GenreDropDown() {
             <Link
               href={`/genre?id=${genre.id}&name=${genre.name}`}
               key={genre.id}
-              className="flex items-center "
+              className="flex items-center"
             >
               <Badge variant={"outline"}>
                 {genre.name}
