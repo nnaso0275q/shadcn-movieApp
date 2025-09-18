@@ -1,18 +1,31 @@
-export const getMoviesList = async (listName: string) => {
-        const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
-        },
-      }
-    );
-    const data = await res.json();
-    return data;
+// export const getMoviesList = async (listName: string) => {
+//         const res = await fetch(
+//       `https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1`,
+//       {
+//         method: "GET",
+//         headers: {
+//           accept: "application/json",
+//           Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+//         },
+//       }
+//     );
+//     const data = await res.json();
+//     return data;
+//   };
+import { movieResponseType } from "@/types";
+export const getMoviesList = async (listName: string): Promise<movieResponseType> => {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1`, {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+    },
+  });
+  const data = await res.json();
+  return {
+    ...data,
+    results: data.results || [], // undefined бол хоосон array
   };
-
+};
 
 
 

@@ -15,7 +15,7 @@ type Props = {
   movies: MovieType[];
 };
 
-export function CarouselSection({ movies }: Props) {
+export function CarouselSection({ movies=[] }: Props) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);

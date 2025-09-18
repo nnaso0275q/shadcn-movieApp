@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,14 +16,14 @@ import Link from "next/link";
 import { GenreResponseType } from "@/types";
 import { getMovieGenres } from "../home/get-data";
 
-export default async function genreDropDown() {
-  const GenreResponseType: GenreResponseType = await getMovieGenres();
-  console.log("GENRERES", GenreResponseType);
+export default async function GenreDropDown() {
+  const genreData: GenreResponseType = await getMovieGenres();
+  console.log("GENRES", genreData);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          <ChevronDown></ChevronDown>Genre
+          <ChevronDown/>Genre
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[577px] h-[333px]" align="start">
@@ -36,7 +37,7 @@ export default async function genreDropDown() {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem className="ml-5 mt-4 hover: !bg-transparent flex flex-wrap gap-4">
-          {GenreResponseType.genres.map((genre) => (
+          {genreData.genres?.map((genre) => (
             <Link
               href={`/genre?id=${genre.id}&name=${genre.name}`}
               key={genre.id}
