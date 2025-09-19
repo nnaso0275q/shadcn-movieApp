@@ -15,26 +15,27 @@ export const generateMetadata = async ({ params }: DetailDynamicPageProps) => {
     title: `MovieSite | ${movieDetailData.title}`,
   };
 };
+
 const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const dynamicParams = await params;
   const id = dynamicParams.id;
   const movieDetailData = await getMovieDetail(id);
   console.log(movieDetailData, "movieDetailData");
-  const DetailData = await getMovieByDetail(id);
-  console.log(DetailData, "DetailData");
 
-// export const DetailByData = async ({params}:DetailDynamicPageProps)=>{
-//  const dynamicParams = await params;
-//   const id = dynamicParams.id;
-//   const DetailData = await getMovieByDetail(id);
-//   console.log(DetailData, "DetailData");
-// })
+  // const DetailData = await getMovieByDetail(id);
+  // console.log(DetailData, "DetailData");
 
+  // const DetailByData = async ({ params }: DetailDynamicPageProps) => {
+  //   const dynamicParams = await params;
+  //   const id = dynamicParams.id;
+  //   const DetailData = await getMovieByDetail(id);
+  //   console.log(DetailData, "DetailData");
+  // };
 
   return (
     <>
       <div className="inter max-w-[1280px] mx-[180px]">
-        <div className="text-[36px] font-bold mb-[24px]">
+        <div className="text-4xl font-bold mb-[24px]">
           {movieDetailData.title}
           <div className="text-[18px] font-normal flex">
             <p>{movieDetailData.release_date}</p>
@@ -68,18 +69,42 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           />
         </div>
         <div className="flex gap-[12px] inter mt-[32px]  mb-[20px]">
-        <button className=" w-[90px] h-[30px] text-[12px] font-semibold rounded-md border border-[#E4E4E7]">Fairy Tail</button>
-         <button className="w-[110px] h-[30px] text-[12px] font-semibold rounded-md border border-[#E4E4E7]">Pop Musical</button>
-          <button className="w-[90px] h-[30px] text-[12px] font-semibold rounded-md border border-[#E4E4E7]">Fantasy</button>
-           <button className="w-[90px] h-[30px] text-[12px] font-semibold rounded-md border border-[#E4E4E7]">Musical</button>
-            <button className="w-[90px] h-[30px] text-[12px] font-semibold rounded-md border border-[#E4E4E7]">Romance</button>
+          <button className=" w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+            Fairy Tail
+          </button>
+          <button className="w-[110px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+            Pop Musical
+          </button>
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+            Fantasy
+          </button>
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+            Musical
+          </button>
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+            Romance
+          </button>
         </div>
-        <div className="text-[16px] font-normal mb-[20px]">{movieDetailData.overview}</div>
+        <div className="text-[16px] font-normal mb-[20px]">
+          {movieDetailData.overview}
+        </div>
+        {/* ----- */}
         <div>
-          <p className="text-[16px] font-bold mb-[4px] ">Director</p>
-          {/* <span>{DetailData.crew}</span> */}
+          <p className="text-base font-bold mb-[4px] ">Director</p>
+          {/* <div>{DetailData.crew}</div> */}
+
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+
+          <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
+          {/* <div>{DetailData.crew}</div> */}
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
+          {/* <div>{DetailData.crew}</div> */}
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
         </div>
-        <div className="border-b-[1px] w-[1080px  border-solid "></div>
+        {/* ------ */}
+
+        <h2 className="mt-[32px] text-2xl font-semibold">More like this</h2>
       </div>
     </>
   );
