@@ -91,10 +91,10 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
         {/* ----- */}
         <>
-          <div className="flex">
-            <p className="text-base font-bold mb-[4px] ">Director</p>
-            {/* <div>{DetailData}</div> */}
-          </div>
+          {/* <div className="flex"> */}
+          <p className="text-base font-bold mb-[4px] ">Director</p>
+          <div>{movieDetailData.crew}</div>
+          {/* </div> */}
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
 
           <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
