@@ -40,7 +40,6 @@ export default function MoviesContainer({ movies, title }: Props) {
                     {movie.vote_average}/10
                   </span>
                 </div>
-                <p className="text-sm font-medium">{movie.title}</p>
               </CardFooter>
             </Card>
           </Link>

@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { getMovieDetail } from "@/shadcn-movieApp/components/home/get-data";
 import {
   Carousel,
   CarouselApi,
@@ -11,14 +12,17 @@ import {
 } from "@/components/ui/carousel";
 import { MovieType } from "@/types";
 
-type Props = {
+type CaraoselProps = {
   movies: MovieType[];
 };
 
-export function CarouselSection({ movies = [] }: Props) {
+export function CarouselSection({ movies = [] }: CaraoselProps) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  // const movieDetailData = await getMovieDetail(id);
+  // console.log(movieDetailData, "movieDetailData");
 
   React.useEffect(() => {
     if (!api) {
@@ -41,7 +45,7 @@ export function CarouselSection({ movies = [] }: Props) {
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-video max-h-[600]  justify-center p-6">
-                    <img></img>
+                    {/* <img src={`https://image.tmdb.org/t/p/w500/${movieDetailData.backdrop_path}`}></img> */}
                   </CardContent>
                   <div className="flex gap-2 mt-[50px] ml-[670px] ">
                     {Array.from({ length: count }).map((_, index) => (

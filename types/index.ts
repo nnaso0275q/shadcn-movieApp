@@ -14,18 +14,18 @@ export type MovieType = {
 };
 
 export type DetailData={
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
+  // adult: boolean;
+  // backdrop_path: string;
+  // genre_ids: number[];
   
-  original_language: string;
-  overview: string;
+  // original_language: string;
+  // overview: string;
 
-  poster_path: string;
-  release_date: string;
-  title: string;
+  // poster_path: string;
+  // release_date: string;
+  // title: string;
 
-  vote_average: number;
+  // vote_average: number;
   cast: string
   crew:string
   id: number;
