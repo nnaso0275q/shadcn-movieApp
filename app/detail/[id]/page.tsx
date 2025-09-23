@@ -132,7 +132,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
           {/*  */}
           <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
-            {movies?.slice(0, 5).map((movie) => (
+            {/* {movies?.slice(0, 5).map((movie) => (
               <Card
                 key={movie.id}
                 className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
@@ -153,7 +153,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
                   </div>
                 </CardFooter>
               </Card>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
