@@ -1,9 +1,10 @@
 import { ThemeToggler } from "../home/ThemeToggler";
-import { Input } from "@/components/ui/input";
+
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import GenreDropDown from "@/components/start_and_end/genreDropDown";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { SearchSection } from "@/components/start_and_end/searchSection";
 export default function Loader() {
   return (
     <div className="w-full h-fit ">
@@ -18,10 +19,7 @@ export default function Loader() {
           <GenreDropDown></GenreDropDown>
           <div className="flex ml-5  items-center">
             <Search className="w-[12px] h-[12px] -mr-8 " />
-            <Input
-              className="w-[380] h-[36] mr-[200] pl-10"
-              placeholder="Search..."
-            ></Input>
+            <SearchSection></SearchSection>
           </div>
           <ThemeToggler></ThemeToggler>
         </div>

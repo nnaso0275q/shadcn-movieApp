@@ -1,17 +1,20 @@
-import { getMovieDetail, getMovieByDetail } from "@/components/home/get-data";
+import {
+  getMovieDetail,
+  getMovieByDetail,
+  getMoreLikeThis,
+} from "@/components/home/get-data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType } from "@/types";
 import { title } from "process";
 import { Star } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type DetailDynamicPageProps = {
   params: Promise<{
     id: string;
-    name: string;
-    page: string;
-    title: string;
-    movies: MovieType[];
+    name?: string;
+    page?: string;
   }>;
 };
 export const generateMetadata = async ({ params }: DetailDynamicPageProps) => {
@@ -28,7 +31,11 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const dynamicParams = await params;
   const id = dynamicParams.id;
   const movieDetailData = await getMovieDetail(id);
+  const movies = await getMoreLikeThis(id);
+
   console.log(movieDetailData, "movieDetailData");
+  const imageBaseUrl = "https://image.tmdb.org/t/p/original";
+  console.log("zuragg..", movieDetailData.backdrop_path);
 
   // const DetailData = await getMovieDetail(id);
   // console.log(DetailData, "DetailData");
@@ -59,14 +66,16 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </p>
         </div> */}
         {/* Poster */}
-        <div className="flex gap-[32px]">
+        <div className="w-full flex gap-[32px]">
           <img
             className="w-[290px] h-[428px]"
-            src={`https://image.tmdb.org/t/p/w500/${movieDetailData.poster_path}`}
+            src={`${imageBaseUrl}${movieDetailData.poster_path}`}
           />
+
+          {/* <button className="w-[40] h-[40] rounded-md bg-white"></button> */}
           <img
             className="w-[760px] h-[428px]"
-            src={`https://image.tmdb.org/t/p/w500/${movieDetailData.backdrop_path}`}
+            src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
           />
         </div>
         <div className="flex gap-[12px] inter mt-[32px]  mb-[20px]">
@@ -94,6 +103,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           {/* <div className="flex"> */}
           <p className="text-base font-bold mb-[4px] ">Director</p>
           <div>{movieDetailData.crew}</div>
+
           {/* </div> */}
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
 
@@ -102,27 +112,36 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
           <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
           {/* <div>{DetailData.crew}</div> */}
-          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <div className="border-b w-[1080px]  border-solid "></div>
         </>
         {/* ------ */}
         <div className="justify-between flex mt-[32px]">
           <h2 className=" text-2xl font-semibold">More like this</h2>
-          <Link href={{ pathname: "/seeMore", query: { title: title } }}>
-            See more →
-          </Link>
+          <button className="text-sm  hover:underline">
+            {" "}
+            <Link
+              href={{
+                pathname: "/seeMore",
+                query: { title: movieDetailData.title },
+              }}
+            >
+              See more →
+            </Link>
+          </button>
         </div>
         <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
-          {/* {movies.slice(0, 5).map((movie) => (
-            <Link key={movie.id} href={`/detail/${movie.id}`}>
+          {/*  */}
+          <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
+            {movies?.slice(0, 5).map((movie) => (
               <Card
                 key={movie.id}
-                className="rounded-2xl shadow-md hover:shadow-lg transition w-[230px] bg-secondary p-0 gap-2"
+                className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
               >
                 <CardContent className="p-0">
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     alt={movie.title}
-                    className="w-[230px] object-cover rounded-t-2xl"
+                    className="w-[230px] object-cover rounded-t-2xl "
                   />
                 </CardContent>
                 <CardFooter className="flex flex-col p-3 items-start">
@@ -134,8 +153,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
                   </div>
                 </CardFooter>
               </Card>
-            </Link>
-          ))} */}
+            ))}
+          </div>
         </div>
       </div>
     </>

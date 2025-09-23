@@ -5,7 +5,7 @@
 //         method: "GET",
 //         headers: {
 //           accept: "application/json",
-//           Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+//           Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
 //         },
 //       }
 //     );
@@ -17,7 +17,7 @@ export const getMoviesList = async (listName: string): Promise<movieResponseType
   const res = await fetch(`https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
     },
   });
   const data = await res.json();
@@ -36,7 +36,7 @@ export const getMovieGenres = async () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
         },
       }
     );
@@ -53,7 +53,7 @@ export const getMovieGenres = async () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
         },
       }
     );
@@ -70,7 +70,7 @@ export const getMovieGenres = async () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
     }
   );
@@ -87,7 +87,7 @@ export const getMovieGenres = async () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
         },
       }
     );
@@ -104,7 +104,7 @@ export const getMovieGenres = async () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
         },
       }
     );
@@ -121,7 +121,7 @@ export const getMovieGenres = async () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
     }
   );
@@ -136,7 +136,7 @@ export const getPopularMovies = async () => {
       method: "GET",
       headers: {
         accept: "applocation/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
  
     }
@@ -154,7 +154,7 @@ export const getTopRatedMovies = async () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
     }
   );
@@ -170,7 +170,7 @@ export const getUpcomingMovies = async () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${process.env.TMDB_ACCESS_KEY}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
     }
   );
@@ -178,3 +178,32 @@ export const getUpcomingMovies = async () => {
   return data;
 };
 
+  export const getSearchedMovies = async (searchValue: string) => {
+  const res = await fetch (
+    `https://api.themoviedb.org/3/search/movie?query=${searchValue}&language=en-US&page=${1}`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};
+
+export const getMoreLikeThis = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  return data;
+};

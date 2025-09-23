@@ -24,13 +24,13 @@ export default function MoviesContainer({ movies, title }: Props) {
           <Link key={movie.id} href={`/detail/${movie.id}`}>
             <Card
               key={movie.id}
-              className="rounded-2xl shadow-md hover:shadow-lg transition w-[230px] bg-secondary p-0 gap-2"
+              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
             >
               <CardContent className="p-0">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
-                  className="w-[230px] object-cover rounded-t-2xl"
+                  className="w-[230px] object-cover rounded-t-2xl "
                 />
               </CardContent>
               <CardFooter className="flex flex-col p-3 items-start">
