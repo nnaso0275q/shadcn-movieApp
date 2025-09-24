@@ -14,7 +14,7 @@
 //   };
 
 
-import axios from "axios"
+
 import { movieResponseType } from "@/types";
 export const getMoviesList = async (listName: string): Promise<movieResponseType> => {
   // const data = axios.get("https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1",{
