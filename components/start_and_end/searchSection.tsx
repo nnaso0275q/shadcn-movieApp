@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { movieResponseType } from "@/types";
 import { getSearchedMovies } from "../home/get-data";

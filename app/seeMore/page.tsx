@@ -1,3 +1,4 @@
+"use state";
 import {
   getNowPlayingMovies,
   getPopularMovies,
@@ -26,9 +27,13 @@ const SeeMorePage = async ({ searchParams: { title } }: Props) => {
     movies = await getPopularMovies();
   }
 
+  // const [isMovies, setIsMovies] = useState<{ results: MovieType[] } | null>(
+  //   null
+  // );
   return (
     <div className="w-full">
       <h2 className="text-3xl font-bold px-10 mb-5  max-sm:text-2xl"></h2>
+      {/* <MoviesContainer movies={movies!.results} title={title} /> */}
       <MoviesContainer movies={movies!.results} title={title} />
     </div>
   );

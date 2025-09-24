@@ -12,9 +12,14 @@
 //     const data = await res.json();
 //     return data;
 //   };
+
+
+import axios from "axios"
 import { movieResponseType } from "@/types";
 export const getMoviesList = async (listName: string): Promise<movieResponseType> => {
+  // const data = axios.get("https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1",{
   const res = await fetch(`https://api.themoviedb.org/3/movie/${listName}?language=en-US&page=1`, {
+
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
@@ -30,6 +35,7 @@ export const getMoviesList = async (listName: string): Promise<movieResponseType
 
 
 export const getMovieGenres = async () => {
+  // const response =await axios.get ("https://api.themoviedb.org/3/genre/movie/list?language=en",
     const res = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?language=en`,
       {

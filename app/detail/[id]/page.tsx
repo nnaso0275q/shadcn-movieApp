@@ -33,6 +33,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetailData = await getMovieDetail(id);
   const movies = await getMoreLikeThis(id);
 
+  console.log({ id, movies });
+
   console.log(movieDetailData, "movieDetailData");
   const imageBaseUrl = "https://image.tmdb.org/t/p/original";
   console.log("zuragg..", movieDetailData.backdrop_path);
@@ -51,7 +53,6 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             <p>{movieDetailData.runtime}</p>
           </div>
         </div>
-
         {/* ZASVARLANA */}
         {/* <div className="pl-[950px] ">
           <div className="text-[12px] font-medium">Rating</div>
@@ -102,7 +103,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         <>
           {/* <div className="flex"> */}
           <p className="text-base font-bold mb-[4px] ">Director</p>
-          <div>{movieDetailData.crew}</div>
+          {/* <div>{movieDetailData.crew}</div> */}
 
           {/* </div> */}
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
@@ -116,45 +117,43 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </>
         {/* ------ */}
         <div className="justify-between flex mt-[32px]">
-          <h2 className=" text-2xl font-semibold">More like this</h2>
+          <h2 className=" text-2xl font-semibold ">More like this</h2>
           <button className="text-sm  hover:underline">
             {" "}
             <Link
               href={{
                 pathname: "/seeMore",
-                query: { title: movieDetailData.title },
+                query: { title: movies.results },
               }}
             >
               See more →
             </Link>
           </button>
         </div>
-        <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
-          {/*  */}
-          <div className="justify-between gap-[32px] flex flex-wrap w-[1280px]">
-            {/* {movies?.slice(0, 5).map((movie) => (
-              <Card
-                key={movie.id}
-                className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
-              >
-                <CardContent className="p-0">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={movie.title}
-                    className="w-[230px] object-cover rounded-t-2xl "
-                  />
-                </CardContent>
-                <CardFooter className="flex flex-col p-3 items-start">
-                  <div className="flex gap-1 text-sm text-gray-700 mb-1">
-                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    <span className="text-muted-foreground">
-                      {movie.vote_average}/10
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
-            ))} */}
-          </div>
+
+        <div className="justify-between gap-[32px] flex mt-[36px]">
+          {movies.results.slice(0, 5).map((movie: MovieType) => (
+            <Card
+              key={movie.id}
+              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
+            >
+              <CardContent className="p-0">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="w-[230px] object-cover rounded-t-2xl "
+                />
+              </CardContent>
+              <CardFooter className="flex flex-col p-3 items-start">
+                <div className="flex gap-1 text-sm text-gray-700 mb-1">
+                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                  <span className="text-muted-foreground">
+                    {movie.vote_average}/10
+                  </span>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </div>
     </>
