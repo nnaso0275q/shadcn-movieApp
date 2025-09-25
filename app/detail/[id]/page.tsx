@@ -17,6 +17,19 @@ type DetailDynamicPageProps = {
     page?: string;
   }>;
 };
+
+export type Crew = {
+  id: number;
+  name: string;
+  job: string;
+  department: string;
+};
+
+export type Cast = {
+  id: number;
+  name: string;
+  profile_path: string | null;
+};
 export const generateMetadata = async ({ params }: DetailDynamicPageProps) => {
   const dynamicParams = await params;
   const id = dynamicParams.id;
@@ -35,9 +48,13 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
   //
   const credits = await getMovieCredits(id);
-  const directors = credits.crew.filter((c: any) => c.job === "Director");
-  const writers = credits.crew.filter((c: any) => c.department === "Writing");
-  const stars = credits.cast.slice(0, 3); // эхний 3 жүжигчинг харуулъя
+  const directors: Crew[] = credits.crew.filter(
+    (c: Crew) => c.job === "Director"
+  );
+  const writers: Crew[] = credits.crew.filter(
+    (c: Crew) => c.department === "Writing"
+  );
+  const stars: Cast[] = credits.cast.slice(0, 5);
   //
 
   console.log(movieDetailData, "movieDetailData");
@@ -47,6 +64,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const DetailData = await getMovieByDetail(id);
   console.log(DetailData, "DetailData");
   // ''''''
+
+  // const writers: Crew[] = credits.crew
+  // .filter((c: Crew) => c.department === "Writing")
+  // .filter((c, index, self) =>
+  //   index === self.findIndex((t) => t.id === c.id)
+  // );
 
   return (
     <>
@@ -110,33 +133,42 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
 
         {/*  */}
-        <div className="mt-6">
-          <p className="text-base font-bold mb-1">Director</p>
-          <div className="mb-3">
-            {directors.map((d: any) => (
-              <p key={d.id}>{d.name}</p>
-            ))}
+        <div className="mt-[20px]">
+          <div className="flex gap-[53px] ">
+            <div className="text-base font-bold mb-1 w-[64px]">Director</div>
+            <div className="mb-3">
+              {directors.map((d: Crew) => (
+                <p key={d.id}>{d.name}</p>
+              ))}
+            </div>
           </div>
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
-          <p className="text-base font-bold mb-1">Writers</p>
-          <div className="mb-3 flex flex-wrap">
-            {writers.map((w: any) => (
-              <div key={w.id}>{w.name}</div>
-            ))}
+          <div className="flex gap-[53px] mt-[22px]">
+            <div className="text-base font-bold mb-1  w-[64px]">Writers</div>
+            <div className="mb-3 flex flex-wrap">
+              {writers.map((w: Crew, index: number) => (
+                <span key={index}>
+                  {w.name}
+                  {index < writers.length - 1 && "  , "}
+                </span>
+              ))}
+            </div>
           </div>
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
-          <p className="text-base font-bold mb-1">Stars</p>
-          <div className="flex gap-3">
-            {stars.map((s: any) => (
-              <div key={s.id} className="flex flex-col items-center">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${s.profile_path}`}
-                  alt={s.name}
-                  className="w-[80px] h-[100px] object-cover rounded-md"
-                />
-                <p className="text-sm mt-1">{s.name}</p>
-              </div>
-            ))}
+          <div className="flex gap-[53px] mt-[22px]">
+            <div className="text-base font-bold mb-1  w-[64px]">Stars</div>
+            <div className="flex gap-3">
+              {stars.map((s: any) => (
+                <div key={s.id} className="flex flex-col items-center">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${s.profile_path}`}
+                    alt={s.name}
+                    className="w-[80px] h-[100px] object-cover rounded-md"
+                  />
+                  <p className="text-sm mt-1">{s.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
         </div>
