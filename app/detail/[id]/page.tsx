@@ -5,10 +5,10 @@ import {
 } from "@/components/home/get-data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType } from "@/types";
-import { title } from "process";
+
 import { Star } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { SlControlPlay } from "react-icons/sl";
 
 type DetailDynamicPageProps = {
   params: Promise<{
@@ -45,54 +45,59 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   return (
     <>
       <div className="inter max-w-[1280px] mx-[180px]">
-        <div className="text-4xl font-bold mb-[24px]">
-          {movieDetailData.title}
-          <div className="text-[18px] font-normal flex">
-            <p>{movieDetailData.release_date}</p>
-            <span>\</span>
-            <p>{movieDetailData.runtime}</p>
+        <div className="flex justify-between">
+          <div className="text-4xl font-bold mb-[24px]">
+            {movieDetailData.title}
+            {/* <div className="text-[18px] font-normal flex">
+              <p>{movieDetailData.release_date}</p>
+              <span>\</span>
+              <p>{movieDetailData.runtime}</p>
+            </div> */}
+          </div>
+          <div>
+            <div className="text-[12px] font-medium">Rating</div>
+            <div className="flex mt-[2px]">
+              <Star className=" w-[24px] h-[22px] text-yellow-400 fill-yellow-400" />
+              <span className="text-muted-foreground">
+                {movieDetailData.vote_average}/10
+              </span>
+            </div>
+            <p className="text-muted-foreground text-[12px] ml-[26px]">
+              {movieDetailData.vote_count}
+            </p>
           </div>
         </div>
-        {/* ZASVARLANA */}
-        {/* <div className="pl-[950px] ">
-          <div className="text-[12px] font-medium">Rating</div>
-          <div className="flex mt-[2px]">
-            <Star className=" w-[24px] h-[22px] text-yellow-400 fill-yellow-400" />
-            <span className="text-muted-foreground">
-              {movieDetailData.vote_average}/10
-            </span>
-          </div>
-          <p className="text-muted-foreground text-[12px] ml-[26px]">
-            {movieDetailData.vote_count}
-          </p>
-        </div> */}
-        {/* Poster */}
+
+        <div></div>
+
         <div className="w-full flex gap-[32px]">
           <img
             className="w-[290px] h-[428px]"
             src={`${imageBaseUrl}${movieDetailData.poster_path}`}
           />
-
-          {/* <button className="w-[40] h-[40] rounded-md bg-white"></button> */}
-          <img
-            className="w-[760px] h-[428px]"
-            src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
-          />
+          <div className="relative w-[760px] h-[428px]">
+            <div className="absolute mt-[364px] flex items-center">
+              <button className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
+                <span className="w-[9px]">
+                  <SlControlPlay />
+                </span>
+              </button>
+              <div className="text-white ml-[12px]">Play trailer</div>
+            </div>
+            <img
+              className="w-full h-full object-cover"
+              src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
+            />
+          </div>
         </div>
         <div className="flex gap-[12px] inter mt-[32px]  mb-[20px]">
-          <button className=" w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
-            Fairy Tail
-          </button>
-          <button className="w-[110px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
-            Pop Musical
-          </button>
-          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-full border border-[#E4E4E7]">
             Fantasy
           </button>
-          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-full border border-[#E4E4E7]">
             Musical
           </button>
-          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-md border border-[#E4E4E7]">
+          <button className="w-[90px] h-[30px] text-xs font-semibold rounded-full border border-[#E4E4E7]">
             Romance
           </button>
         </div>
@@ -119,7 +124,6 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         <div className="justify-between flex mt-[32px]">
           <h2 className=" text-2xl font-semibold ">More like this</h2>
           <button className="text-sm  hover:underline">
-            {" "}
             <Link
               href={{
                 pathname: "/seeMore",

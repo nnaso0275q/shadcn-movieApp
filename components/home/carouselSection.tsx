@@ -21,6 +21,7 @@ export const CarouselSection = ({ movies }: CarouselProps) => {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
+  // !
   React.useEffect(() => {
     if (!api) return;
 
@@ -31,7 +32,7 @@ export const CarouselSection = ({ movies }: CarouselProps) => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
-
+  //
   return (
     <Carousel setApi={setApi}>
       <CarouselContent className="">
