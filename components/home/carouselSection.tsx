@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { MovieType } from "@/types";
-import { getMovieDetail } from "@/shadcn-movieApp/components/home/get-data";
+// import { getMovieDetail } from "@/app/detail";
 
 type CarouselProps = {
   movies: MovieType[];

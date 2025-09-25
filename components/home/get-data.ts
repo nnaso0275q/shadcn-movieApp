@@ -102,10 +102,10 @@ export const getMovieGenres = async () => {
   };
 
 
-
-    export const getMovieByDetail = async (id: string, crew: string, cast: string) => {
+// *****************
+    export const getMovieByDetail = async (id: string) => {
     const res = await fetch(
-      `https://api.themoviedb.org/3//movie/${id}/credits?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
       {
         method: "GET",
         headers: {
@@ -119,6 +119,25 @@ export const getMovieGenres = async () => {
   };
 
 
+
+  export const getMovieCredits = async (id: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+    {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
+      },
+    }
+  );
+  if (!res.ok) throw new Error("Failed to fetch credits");
+  return res.json();
+};
+
+
+
+// *****************
 
   export const getNowPlayingMovies = async () => {
   const res = await fetch(
@@ -141,7 +160,7 @@ export const getPopularMovies = async () => {
     {
       method: "GET",
       headers: {
-        accept: "applocation/json",
+        accept: "application/json",
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_KEY_TMDB_ACCESS_KEY}`,
       },
  

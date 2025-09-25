@@ -10,7 +10,7 @@ export default function Loader() {
     <div className="w-full h-fit ">
       <div className="max-w-[1280px] flex my-[11.5] justify-between m-auto mx-[80px]">
         <Link href={"/"}>
-          <img src="/movie.svg"></img>
+          <img src="/movieZ.svg"></img>
         </Link>
 
         <DropdownMenu></DropdownMenu>

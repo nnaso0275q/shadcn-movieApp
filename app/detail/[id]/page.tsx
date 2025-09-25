@@ -2,13 +2,13 @@ import {
   getMovieDetail,
   getMovieByDetail,
   getMoreLikeThis,
+  getMovieCredits,
 } from "@/components/home/get-data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType } from "@/types";
 
 import { Star } from "lucide-react";
 import Link from "next/link";
-import { SlControlPlay } from "react-icons/sl";
 
 type DetailDynamicPageProps = {
   params: Promise<{
@@ -33,19 +33,25 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetailData = await getMovieDetail(id);
   const movies = await getMoreLikeThis(id);
 
-  console.log({ id, movies });
+  //
+  const credits = await getMovieCredits(id);
+  const directors = credits.crew.filter((c: any) => c.job === "Director");
+  const writers = credits.crew.filter((c: any) => c.department === "Writing");
+  const stars = credits.cast.slice(0, 3); // эхний 3 жүжигчинг харуулъя
+  //
 
   console.log(movieDetailData, "movieDetailData");
   const imageBaseUrl = "https://image.tmdb.org/t/p/original";
-  console.log("zuragg..", movieDetailData.backdrop_path);
 
-  // const DetailData = await getMovieDetail(id);
-  // console.log(DetailData, "DetailData");
+  // ''''''
+  const DetailData = await getMovieByDetail(id);
+  console.log(DetailData, "DetailData");
+  // ''''''
 
   return (
     <>
-      <div className="inter max-w-[1280px] mx-[180px]">
-        <div className="flex justify-between">
+      <div className="inter max-w-[1440px] mx-[180px]">
+        <div className="flex justify-between mt-[52px]">
           <div className="text-4xl font-bold mb-[24px]">
             {movieDetailData.title}
             {/* <div className="text-[18px] font-normal flex">
@@ -68,9 +74,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </div>
         </div>
 
-        <div></div>
-
-        <div className="w-full flex gap-[32px]">
+        <div className="w-full flex justify-between">
           <img
             className="w-[290px] h-[428px]"
             src={`${imageBaseUrl}${movieDetailData.poster_path}`}
@@ -78,11 +82,11 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <div className="relative w-[760px] h-[428px]">
             <div className="absolute mt-[364px] flex items-center">
               <button className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
-                <span className="w-[9px]">
-                  <SlControlPlay />
-                </span>
+                <img src="/playIcon.svg"></img>
               </button>
-              <div className="text-white ml-[12px]">Play trailer</div>
+              <div className="text-white ml-[12px] font-normal text-base">
+                Play trailer
+              </div>
             </div>
             <img
               className="w-full h-full object-cover"
@@ -104,23 +108,57 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         <div className="text-[16px] font-normal mb-[20px]">
           {movieDetailData.overview}
         </div>
-        {/* ----- */}
-        <>
-          {/* <div className="flex"> */}
-          <p className="text-base font-bold mb-[4px] ">Director</p>
-          {/* <div>{movieDetailData.crew}</div> */}
 
-          {/* </div> */}
+        {/*  */}
+        <div className="mt-6">
+          <p className="text-base font-bold mb-1">Director</p>
+          <div className="mb-3">
+            {directors.map((d: any) => (
+              <p key={d.id}>{d.name}</p>
+            ))}
+          </div>
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <p className="text-base font-bold mb-1">Writers</p>
+          <div className="mb-3 flex flex-wrap">
+            {writers.map((w: any) => (
+              <div key={w.id}>{w.name}</div>
+            ))}
+          </div>
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <p className="text-base font-bold mb-1">Stars</p>
+          <div className="flex gap-3">
+            {stars.map((s: any) => (
+              <div key={s.id} className="flex flex-col items-center">
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${s.profile_path}`}
+                  alt={s.name}
+                  className="w-[80px] h-[100px] object-cover rounded-md"
+                />
+                <p className="text-sm mt-1">{s.name}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+        </div>
+
+        {/*  */}
+
+        {/*     
+        <div>
+          <div className="flex text-base font-bold  ">
+            <p className="mb-[4px] ">Director</p>
+            <div>{DetailData.crew.name}</div>
+          </div>
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
 
           <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
-          {/* <div>{DetailData.crew}</div> */}
+         ..
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
           <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
-          {/* <div>{DetailData.crew}</div> */}
+       ..
           <div className="border-b w-[1080px]  border-solid "></div>
-        </>
-        {/* ------ */}
+        </div> */}
+
         <div className="justify-between flex mt-[32px]">
           <h2 className=" text-2xl font-semibold ">More like this</h2>
           <button className="text-sm  hover:underline">
@@ -137,26 +175,28 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
         <div className="justify-between gap-[32px] flex mt-[36px]">
           {movies.results.slice(0, 5).map((movie: MovieType) => (
-            <Card
-              key={movie.id}
-              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
-            >
-              <CardContent className="p-0">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                  className="w-[230px] object-cover rounded-t-2xl "
-                />
-              </CardContent>
-              <CardFooter className="flex flex-col p-3 items-start">
-                <div className="flex gap-1 text-sm text-gray-700 mb-1">
-                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="text-muted-foreground">
-                    {movie.vote_average}/10
-                  </span>
-                </div>
-              </CardFooter>
-            </Card>
+            <Link key={movie.id} href={`/detail/${movie.id}`}>
+              <Card
+                key={movie.id}
+                className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
+              >
+                <CardContent className="p-0">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                    className="w-[230px] object-cover rounded-t-2xl "
+                  />
+                </CardContent>
+                <CardFooter className="flex flex-col p-3 items-start">
+                  <div className="flex gap-1 text-sm text-gray-700 mb-1">
+                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <span className="text-muted-foreground">
+                      {movie.vote_average}/10
+                    </span>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
