@@ -1,4 +1,4 @@
-import { CarouselSection } from "@/components/home/carouselSection";
+import CarouselSection from "@/components/home/Carousel-Heseg/carouselSection";
 import MoviesContainer from "@/components/home/moviesContainer";
 import { movieResponseType } from "@/types";
 import { getMoviesList } from "@/components/home/get-data";
@@ -21,7 +21,6 @@ export default async function Home() {
       <MoviesContainer movies={upcoming} title="Upcoming" />
       <MoviesContainer movies={popular} title="Popular" />
       <MoviesContainer movies={topRated} title="Top Rated" />
-      {/* <DetailDynamicPage movies={nowPlaying} title="More Like this" /> */}
     </>
   );
 }

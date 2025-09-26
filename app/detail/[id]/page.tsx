@@ -1,11 +1,21 @@
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import {
   getMovieDetail,
   getMovieByDetail,
   getMoreLikeThis,
   getMovieCredits,
+  getMovieTrailer,
 } from "@/components/home/get-data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { MovieType } from "@/types";
+import { MovieType, TrailerResponseType } from "@/types";
 
 import { Star } from "lucide-react";
 import Link from "next/link";
@@ -45,6 +55,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const id = dynamicParams.id;
   const movieDetailData = await getMovieDetail(id);
   const movies = await getMoreLikeThis(id);
+
+  //=========
+  const trailerData: TrailerResponseType = await getMovieTrailer(id);
+  const trailer = trailerData.results.find((item) => item.type === "Trailer");
+  console.log("trailerData ", trailerData);
+  //=========
 
   //
   const credits = await getMovieCredits(id);
@@ -102,11 +118,28 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             className="w-[290px] h-[428px]"
             src={`${imageBaseUrl}${movieDetailData.poster_path}`}
           />
+          {/*  */}
           <div className="relative w-[760px] h-[428px]">
             <div className="absolute mt-[364px] flex items-center">
-              <button className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
-                <img src="/playIcon.svg"></img>
-              </button>
+              <Dialog>
+                <DialogTrigger className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
+                  <img src="/playIcon.svg"></img>
+                </DialogTrigger>
+                <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
+                  <DialogHeader>
+                    <DialogTitle className="hidden"></DialogTitle>
+
+                    <iframe
+                      width="997"
+                      height="561"
+                      src={`https://www.youtube.com/embed/${trailer?.key}`}
+                      title="The Conjuring: Last Rites | Official Trailer"
+                      allowFullScreen
+                    ></iframe>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+
               <div className="text-white ml-[12px] font-normal text-base">
                 Play trailer
               </div>
@@ -116,6 +149,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
             />
           </div>
+          {/*  */}
         </div>
         <div className="flex gap-[12px] inter mt-[32px]  mb-[20px]">
           <button className="w-[90px] h-[30px] text-xs font-semibold rounded-full border border-[#E4E4E7]">
@@ -157,7 +191,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <div className="border-b-[1px] w-[1080px  border-solid "></div>
           <div className="flex gap-[53px] mt-[22px]">
             <div className="text-base font-bold mb-1  w-[64px]">Stars</div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 mb-3">
               {stars.map((s: any) => (
                 <div key={s.id} className="flex flex-col items-center">
                   <img
@@ -181,11 +215,11 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             <p className="mb-[4px] ">Director</p>
             <div>{DetailData.crew.name}</div>
           </div>
-          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <div className="border-b-[1px] w-[1080px]  border-solid "></div>
 
           <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
          ..
-          <div className="border-b-[1px] w-[1080px  border-solid "></div>
+          <div className="border-b-[1px] w-[1080px]  border-solid "></div>
           <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
        ..
           <div className="border-b w-[1080px]  border-solid "></div>
@@ -210,7 +244,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             <Link key={movie.id} href={`/detail/${movie.id}`}>
               <Card
                 key={movie.id}
-                className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
+                className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[190px] bg-secondary p-0 gap-2 "
               >
                 <CardContent className="p-0">
                   <img
@@ -226,6 +260,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
                       {movie.vote_average}/10
                     </span>
                   </div>
+                  <h1 className="text-foreground">{movie.title}</h1>
                 </CardFooter>
               </Card>
             </Link>

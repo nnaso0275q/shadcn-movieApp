@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+
 import {
   Carousel,
   CarouselApi,
@@ -10,17 +11,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { MovieType } from "@/types";
-// import { getMovieDetail } from "@/app/detail";
+import { Star } from "lucide-react";
+import { title } from "process";
+// import CarouselDetail from "./carouselDetail";
 
 type CarouselProps = {
   movies: MovieType[];
 };
 
-export const CarouselSection = ({ movies }: CarouselProps) => {
+const CarouselSection = ({ movies }: CarouselProps) => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-
   // !
   React.useEffect(() => {
     if (!api) return;
@@ -33,6 +35,7 @@ export const CarouselSection = ({ movies }: CarouselProps) => {
     });
   }, [api]);
   //
+
   return (
     <Carousel setApi={setApi}>
       <CarouselContent className="">
@@ -41,10 +44,29 @@ export const CarouselSection = ({ movies }: CarouselProps) => {
             <div className="p-1">
               <Card className="py-0">
                 <CardContent className="flex aspect-video h-[600px] justify-center p-0">
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                    className="object-cover w-full h-full "
-                  />
+                  {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+                  <div className="relative w-full h-full ">
+                    <div className="absolute w-[404px] ml-[140px] inter mt-[178px]">
+                      {/* <CarouselDetail movie={movie} /> */}
+                      {/* <div className="text-white text-base font-normal not-italic">
+                        Now playing :
+                      </div>
+                      <h1 className="text-foreground h-[40px] text-4xl font-bold flex">
+                        {movie.title}
+                      </h1>
+                      <div className="flex gap-1 text-sm text-gray-700 mt-[40px]">
+                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                        <span className="text-muted-foreground">
+                          {movie.vote_average}/10
+                        </span>
+                      </div> */}
+                    </div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                      className="object-cover "
+                    />
+                  </div>
+                  {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
                 </CardContent>
               </Card>
             </div>

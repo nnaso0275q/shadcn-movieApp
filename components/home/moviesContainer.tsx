@@ -24,7 +24,7 @@ export default function MoviesContainer({ movies, title }: Props) {
           <Link key={movie.id} href={`/detail/${movie.id}`}>
             <Card
               key={movie.id}
-              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] bg-secondary p-0 gap-2 "
+              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] h-[440px] bg-secondary p-0 gap-2 "
             >
               <CardContent className="p-0">
                 <img
@@ -40,6 +40,7 @@ export default function MoviesContainer({ movies, title }: Props) {
                     {movie.vote_average}/10
                   </span>
                 </div>
+                <h1 className="text-foreground">{movie.title}</h1>
               </CardFooter>
             </Card>
           </Link>
