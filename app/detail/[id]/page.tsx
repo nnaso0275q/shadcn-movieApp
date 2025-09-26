@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,7 +15,7 @@ import {
 } from "@/components/home/get-data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType, TrailerResponseType } from "@/types";
-
+import { Cast, Crew } from "@/types";
 import { Star } from "lucide-react";
 import Link from "next/link";
 
@@ -28,18 +27,7 @@ type DetailDynamicPageProps = {
   }>;
 };
 
-export type Crew = {
-  id: number;
-  name: string;
-  job: string;
-  department: string;
-};
 
-export type Cast = {
-  id: number;
-  name: string;
-  profile_path: string | null;
-};
 export const generateMetadata = async ({ params }: DetailDynamicPageProps) => {
   const dynamicParams = await params;
   const id = dynamicParams.id;

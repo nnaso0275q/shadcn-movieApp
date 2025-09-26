@@ -1,4 +1,4 @@
-import CarouselSection from "@/components/home/Carousel-Heseg/carouselSection";
+import CarouselSection from "@/components/home/carouselSection";
 import MoviesContainer from "@/components/home/moviesContainer";
 import { movieResponseType } from "@/types";
 import { getMoviesList } from "@/components/home/get-data";
