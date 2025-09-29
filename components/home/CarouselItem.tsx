@@ -8,7 +8,6 @@ import { Star } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -34,7 +33,6 @@ export const CarouselItemComp = ({
     const trailerData: TrailerResponseType = await getMovieTrailer(
       id.toString()
     );
-    // console.log("trailerData ", trailerData);
     const trailer = trailerData.results.find((item) => item.type === "Trailer");
     setIsTrailer(trailer?.key || "");
     console.log(trailer, "trailer");
@@ -45,9 +43,9 @@ export const CarouselItemComp = ({
   return (
     <CarouselItem>
       <div className="p-1">
-        <Card className="py-0">
-          <CardContent className="flex aspect-video h-[600px] justify-center p-0">
-            {/* \\\\\\\\\\\\\\\.  \\\\\\\\\\\\\\\\\\\\\\\\\ */}
+        <Card className="py-0 border-none">
+          <CardContent className="flex aspect-video h-[600px] justify-center p-0 ">
+            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
             <div className="relative w-full h-full">
               <div className="absolute w-[404px] ml-[140px] inter mt-[178px]">
                 <div className="text-white text-base font-normal not-italic h-[24px]">
@@ -62,25 +60,28 @@ export const CarouselItemComp = ({
                     {vote}
                     <span className="text-gray-600"> /10</span>
                   </div>
-                  <Dialog>
-                    <DialogTrigger className=" w-[145px] h-[40px] rounded-md bg-white"></DialogTrigger>
-                    <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
-                      <DialogHeader>
-                        <DialogTitle className="hidden"></DialogTitle>
-                        <iframe
-                          width="997"
-                          height="561"
-                          src={`https://www.youtube.com/embed/${isTrailer}`}
-                          title="The Conjuring: Last Rites | Official Trailer"
-                          allowFullScreen
-                        ></iframe>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
                 </div>
                 <h2 className="text-[#FAFAFA] text-[12px] overflow-x-scroll mt-[16px] font-normal">
                   {overview}
                 </h2>
+                <Dialog>
+                  <DialogTrigger className=" w-[140px] h-[40px] rounded-md bg-white mt-[16px] text-black inter font-medium text-base">
+                    {/* <img className="w-[9px] h-[12px]" src="playIcon.svg"></img> */}
+                    Watch Trailer
+                  </DialogTrigger>
+                  <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
+                    <DialogHeader>
+                      <DialogTitle className="hidden"></DialogTitle>
+                      <iframe
+                        width="997"
+                        height="561"
+                        src={`https://www.youtube.com/embed/${isTrailer}`}
+                        title="The Conjuring: Last Rites | Official Trailer"
+                        allowFullScreen
+                      ></iframe>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               </div>
               <img
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}

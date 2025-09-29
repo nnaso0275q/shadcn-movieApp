@@ -24,15 +24,6 @@ const Genre = async ({ searchParams }: GenrePageProps) => {
     <div>
       <div className="flex flex-wrap gap-3">
         <MoviesContainer movies={filteredMoviesResponse.results} title={name} />
-        {/* {filteredMoviesResponse.results.slice(0, 10).map((movie) => (
-          <MoviesContainer
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            score={movie.vote_average}
-            image={movie.poster_path}
-          />
-        ))} */}
       </div>
     </div>
   );

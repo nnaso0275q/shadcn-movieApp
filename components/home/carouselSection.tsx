@@ -5,7 +5,6 @@ import {
   Carousel,
   CarouselApi,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
@@ -18,15 +17,9 @@ type CarouselProps = {
 };
 
 const CarouselSection = ({ movies }: CarouselProps) => {
-  //   const dynamicParams = await params;
-  // const id = dynamicParams.id;
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-
-  //=========function
-
-  //=========
 
   // !
   React.useEffect(() => {
@@ -44,7 +37,7 @@ const CarouselSection = ({ movies }: CarouselProps) => {
 
   return (
     <Carousel setApi={setApi}>
-      <CarouselContent className="">
+      <CarouselContent>
         {movies.map((movie, index) => (
           <CarouselItemComp
             id={movie.id}
@@ -56,10 +49,11 @@ const CarouselSection = ({ movies }: CarouselProps) => {
           />
         ))}
       </CarouselContent>
+
       <CarouselPrevious className="left-13" />
       <CarouselNext className="right-13" />
 
-      <div className="flex gap-2 justify-center">
+      <div className="flex gap-2 justify-center mt-[10]">
         {Array.from({ length: count }).map((_, index) => (
           <div
             onClick={() => {
@@ -77,13 +71,3 @@ const CarouselSection = ({ movies }: CarouselProps) => {
 };
 
 export default CarouselSection;
-
-// const getTrailer = async (movie: string) => {
-//   console.log(movie, "kljlmovie");
-//   const trailerData: TrailerResponseType = await getMovieTrailer(
-//     movies.id.toString()
-//   );
-//   const trailer = trailerData.results.find((item) => item.type === "Trailer");
-//   console.log("trailerData ", trailerData);
-//   getTrailer();
-// };
