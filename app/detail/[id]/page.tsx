@@ -46,7 +46,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   //=========
   const trailerData: TrailerResponseType = await getMovieTrailer(id);
   const trailer = trailerData.results.find((item) => item.type === "Trailer");
-  console.log("trailerData ", trailerData);
+  // console.log("trailerData ", trailerData);
   //=========
 
   //
@@ -60,12 +60,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const stars: Cast[] = credits.cast.slice(0, 5);
   //
 
-  console.log(movieDetailData, "movieDetailData");
+  // console.log(movieDetailData, "movieDetailData");
   const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
   // ''''''
   const DetailData = await getMovieByDetail(id);
-  console.log(DetailData, "DetailData");
+  // console.log(DetailData, "DetailData");
   // ''''''
 
   // const writers: Crew[] = credits.crew
@@ -73,6 +73,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   // .filter((c, index, self) =>
   //   index === self.findIndex((t) => t.id === c.id)
   // );
+
+  // release_date: '2025-08-21',
 
   return (
     <div className="inter max-w-[1440px] mx-[180px]">
@@ -195,21 +197,21 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
 
       {/*  */}
 
-      {/*     
-        <div>
-          <div className="flex text-base font-bold  ">
-            <p className="mb-[4px] ">Director</p>
-            <div>{DetailData.crew.name}</div>
-          </div>
-          <div className="border-b-[1px] w-[1080px]  border-solid "></div>
+      {/* '''''''''''''''''' */}
+      <div>
+        <div className="flex text-base font-bold  ">
+          <p className="mb-[4px] ">Director</p>
+          <div>{DetailData.crew.name}</div>
+        </div>
+        <div className="border-b-[1px] w-[1080px]  border-solid "></div>
+        <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
 
-          <p className="text-base font-bold mb-[4px] mt-[20px]">Writers</p>
-         ..
-          <div className="border-b-[1px] w-[1080px]  border-solid "></div>
-          <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
-       ..
-          <div className="border-b w-[1080px]  border-solid "></div>
-        </div> */}
+        <div className="border-b-[1px] w-[1080px]  border-solid "></div>
+        <p className="text-base font-bold mb-[4px] mt-[20px]">Stars</p>
+
+        <div className="border-b w-[1080px]  border-solid "></div>
+      </div>
+      {/* '''''''''''''''' */}
 
       <div className="justify-between flex mt-[32px]">
         <h2 className=" text-2xl font-semibold ">More like this</h2>

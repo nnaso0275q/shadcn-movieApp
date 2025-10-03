@@ -79,7 +79,7 @@ export const getMoviesByGenreId = async (genreIds: string, page: string) => {
   const data = await res.json();
   return data;
 };
-
+// /movie/${movieId}?language=en-US
 export const getMovieDetail = async (id: string) => {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
@@ -92,6 +92,7 @@ export const getMovieDetail = async (id: string) => {
     }
   );
   const data = await res.json();
+  console.log("getMovieDetail", data);
   return data;
 };
 
@@ -108,6 +109,7 @@ export const getMovieByDetail = async (id: string) => {
     }
   );
   const data = await res.json();
+  console.log(data, "getMovieByDetail");
   return data;
 };
 
@@ -155,7 +157,7 @@ export const getPopularMovies = async () => {
     }
   );
   const data = await res.json();
-  console.log("DATA IRLEE", data);
+  // console.log("DATA IRLEE", data);
   return data;
 };
 
@@ -231,6 +233,6 @@ export const getMovieTrailer = async (movieId: string) => {
     }
   );
   const data = await res.json();
-  console.log(data, "data");
+  // console.log(data, "data");
   return data;
 };

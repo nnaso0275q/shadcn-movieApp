@@ -24,7 +24,7 @@ export default function MoviesContainer({ movies, title }: Props) {
           <Link key={movie.id} href={`/detail/${movie.id}`}>
             <Card
               key={movie.id}
-              className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[230px] h-[440px] bg-secondary p-0 gap-2 "
+              className="rounded-2xl shadow-md inset-0 object-cover hover:brightness-75 hover:scale-105 transition duration-300 w-[230px] h-[440px] bg-secondary p-0 gap-2 "
             >
               <CardContent className="p-0">
                 <img

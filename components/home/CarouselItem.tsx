@@ -35,7 +35,7 @@ export const CarouselItemComp = ({
     );
     const trailer = trailerData.results.find((item) => item.type === "Trailer");
     setIsTrailer(trailer?.key || "");
-    console.log(trailer, "trailer");
+    // console.log(trailer, "trailer");
   };
   useEffect(() => {
     GetTrailer();

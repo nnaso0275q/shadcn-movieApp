@@ -49,17 +49,17 @@ export const SearchSection = ({ movies }: Props) => {
           <PopoverTrigger className="hidden" />
 
           <PopoverContent className="w-[570px] ml-[540px] mt-[50px]">
-            <div>
+            <>
               {foundMovies?.results.slice(0, 5).map((movie, index) => {
                 return (
                   <div key={index} className="flex">
-                    <div
+                    <img
                       key={index}
-                      className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[67px] h-[100px] bg-secondary p-0 gap-2 mt-[5px]"
-                      // {movies.poster_path}
-                    ></div>
+                      className="rounded-2xl shadow-md inset-0 object-cover hover:brightness-75 hover:scale-105 transition duration-300 w-[67px] h-[100px] bg-secondary p-0 mt-[8px]"
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    ></img>
 
-                    <div>
+                    <div className="ml-[16px]">
                       <div className="mt-[5px] ml-[5px]">{movie.title}</div>
 
                       <div className="flex gap-1 text-sm text-gray-700 mb-1">
@@ -69,15 +69,23 @@ export const SearchSection = ({ movies }: Props) => {
                         </span>
                       </div>
                       {/* Garsan on */}
-                      <button className="text-sm  hover:underline ml-[]">
-                        {/* <Link href={{ pathname: "/seeMore", query: { title: title } }}> */}
-                        See more →{/* </Link> */}
-                      </button>
+                      <div className="flex gap-[280px] mt-[12px]">
+                        <div>{movie.release_date}</div>
+                        <button className="text-sm  hover:underline ">
+                          {/* <Link
+                            href={{
+                              pathname: "/seeMore",
+                              query: { title: title },
+                            }}
+                          > */}
+                          See more →{/* </Link> */}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );
               })}
-            </div>
+            </>
             <div className="border-b-[1px] w-[540px]  border-solid my-[8px]"></div>
             <button className="hover:underline text-foreground inter text-sm font-medium">
               {/* <Link href={`/search/${searchValue}`}> */}
