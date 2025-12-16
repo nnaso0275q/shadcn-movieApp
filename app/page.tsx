@@ -2,7 +2,6 @@ import CarouselSection from "@/components/home/carouselSection";
 import MoviesContainer from "@/components/home/moviesContainer";
 import { movieResponseType } from "@/types";
 import { getMoviesList } from "@/components/home/get-data";
-import Link from "next/link";
 
 export default async function Home() {
   const upcomingMovies: movieResponseType = await getMoviesList("upcoming");
@@ -18,9 +17,12 @@ export default async function Home() {
   return (
     <>
       <CarouselSection movies={upcoming} />
+      
+      <div className="max-w-fit mx-auto">
       <MoviesContainer movies={upcoming} title="Upcoming" />
       <MoviesContainer movies={popular} title="Popular" />
       <MoviesContainer movies={topRated} title="Top Rated" />
+      </div>
     </>
   );
 }

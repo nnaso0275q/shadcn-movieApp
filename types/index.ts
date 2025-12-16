@@ -11,6 +11,8 @@ export type MovieType = {
   vote_average: number;
 };
 
+
+
 export type movieResponseType = {
   page: number;
   total_pages: number;

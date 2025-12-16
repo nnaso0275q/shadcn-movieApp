@@ -3,8 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/home/theme-provider";
 import { Layout } from "lucide-react";
-import Loader from "@/components/start_and_end/loader";
-import Footer from "@/components/start_and_end/footer";
+
+import Footer from "@/components/header/footer";
+import Loader from "@/components/header/loader";
+// import Footer from "@/components/_components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +42,9 @@ export default function RootLayout({
           <Loader></Loader>
 
           {children}
+          
           <Footer></Footer>
+      
         </ThemeProvider>
       </body>
     </html>
