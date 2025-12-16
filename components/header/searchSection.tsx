@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import Image from "next/image";
 
 export const SearchSection = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -91,7 +92,7 @@ export const SearchSection = () => {
                 key={movie.id}
                 className="flex gap-4 p-2 rounded-lg hover:bg-muted/40 transition"
               >
-                <img
+                <Image
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   className="w-[67px] h-[100px] rounded-xl object-cover"
                   alt={movie.title}

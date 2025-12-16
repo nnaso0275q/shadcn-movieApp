@@ -1,4 +1,5 @@
 import { Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className="w-full bg-indigo-700 h-fit">
         <div className="py-10 px-20 flex justify-between">
           <div className="space-y-3">
-            <img src="/Logo.svg"></img>
+            <Image alt="Movie Z" src="/Logo.svg"></Image>
             <h1>© 2024 Movie Z. All Rights Reserved.</h1>
           </div>
           <div className="flex gap-[96px]">

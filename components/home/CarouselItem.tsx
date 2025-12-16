@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Image from "next/image";
 
 type CarouselItemComp = {
   id: number;
@@ -83,7 +84,8 @@ export const CarouselItemComp = ({
                   </DialogContent>
                 </Dialog>
               </div>
-              <img
+              <Image
+              alt=""
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 className="object-cover "
               />

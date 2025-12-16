@@ -18,6 +18,7 @@ import { MovieType, TrailerResponseType } from "@/types";
 import { Cast, Crew } from "@/types";
 import { Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 type DetailDynamicPageProps = {
   params: Promise<{
@@ -43,7 +44,6 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetailData = await getMovieDetail(id);
   const movies = await getMoreLikeThis(id);
 
- 
   const trailerData: TrailerResponseType = await getMovieTrailer(id);
   const trailer = trailerData.results.find((item) => item.type === "Trailer");
 
@@ -85,16 +85,18 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
       </div>
 
       <div className="w-full flex justify-between">
-        <img
+        <Image
           className="w-[290px] h-[428px]"
           src={`${imageBaseUrl}${movieDetailData.poster_path}`}
+          alt={movieDetailData.title || "Movie Poster"}
+      
         />
         {/*  */}
         <div className="relative w-[760px] h-[428px]">
           <div className="absolute mt-[364px] flex items-center">
             <Dialog>
               <DialogTrigger className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
-                <img src="/playIcon.svg"></img>
+                <Image alt="" src="/playIcon.svg"></Image>
               </DialogTrigger>
               <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
                 <DialogHeader>
@@ -115,8 +117,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               Play trailer
             </div>
           </div>
-          <img
+          <Image
             className="w-full h-full object-cover"
+            alt=""
             src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
           />
         </div>
@@ -163,9 +166,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         <div className="flex gap-[53px] mt-[22px]">
           <div className="text-base font-bold mb-1  w-[64px]">Stars</div>
           <div className="flex gap-3 mb-3">
-            {stars.map((s: any) => (
+            {stars.map((s) => (
               <div key={s.id} className="flex flex-col items-center">
-                <img
+                <Image
                   src={`https://image.tmdb.org/t/p/w200${s.profile_path}`}
                   alt={s.name}
                   className="w-[80px] h-[100px] object-cover rounded-md"
@@ -218,7 +221,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
               className="rounded-2xl shadow-md hover:shadow-lg hover:scale-105 w-[190px] bg-secondary p-0 gap-2 "
             >
               <CardContent className="p-0">
-                <img
+                <Image
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
                   className="w-[230px] object-cover rounded-t-2xl "

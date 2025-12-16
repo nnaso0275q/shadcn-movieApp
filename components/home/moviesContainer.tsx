@@ -4,6 +4,7 @@ import { MovieType } from "@/types";
 import { Star } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
 
 type Props = {
   movies: MovieType[] | null;
@@ -44,7 +45,7 @@ export default function MoviesContainer({ movies, title }: Props) {
               <Link key={movie.id} href={`/detail/${movie.id}`}>
                 <Card className="rounded-2xl shadow-md inset-0 object-cover hover:brightness-75 hover:scale-105 transition duration-300 w-[230px] h-[440px] bg-secondary p-0 gap-2">
                   <CardContent className="p-0">
-                    <img
+                    <Image
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt={movie.title}
                       className="w-[230px] object-cover rounded-t-2xl"
