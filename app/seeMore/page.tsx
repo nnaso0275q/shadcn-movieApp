@@ -26,10 +26,6 @@ const SeeMorePage = async ({ searchParams: { title } }: Props) => {
   } else if (title === "Popular") {
     movies = await getPopularMovies();
   }
-
-  // const [isMovies, setIsMovies] = useState<{ results: MovieType[] } | null>(
-  //   null
-  // );
   return (
     <div className="w-full">
       <h2 className="text-3xl font-bold px-10 mb-5  max-sm:text-2xl"></h2>

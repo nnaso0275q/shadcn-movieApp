@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { Input } from "@/components/ui/input";

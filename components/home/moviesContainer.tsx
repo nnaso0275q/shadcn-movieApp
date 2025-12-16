@@ -1,5 +1,4 @@
-// 
-
+"use client"
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { MovieType } from "@/types";
 import { Star } from "lucide-react";

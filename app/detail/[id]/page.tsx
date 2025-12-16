@@ -43,13 +43,10 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
   const movieDetailData = await getMovieDetail(id);
   const movies = await getMoreLikeThis(id);
 
-  //=========
+ 
   const trailerData: TrailerResponseType = await getMovieTrailer(id);
   const trailer = trailerData.results.find((item) => item.type === "Trailer");
-  // console.log("trailerData ", trailerData);
-  //=========
 
-  //
   const credits = await getMovieCredits(id);
   const directors: Crew[] = credits.crew.filter(
     (c: Crew) => c.job === "Director"
@@ -58,23 +55,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
     (c: Crew) => c.department === "Writing"
   );
   const stars: Cast[] = credits.cast.slice(0, 5);
-  //
-
-  // console.log(movieDetailData, "movieDetailData");
   const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
-  // ''''''
   const DetailData = await getMovieByDetail(id);
-  // console.log(DetailData, "DetailData");
-  // ''''''
-
-  // const writers: Crew[] = credits.crew
-  // .filter((c: Crew) => c.department === "Writing")
-  // .filter((c, index, self) =>
-  //   index === self.findIndex((t) => t.id === c.id)
-  // );
-
-  // release_date: '2025-08-21',
 
   return (
     <div className="inter max-w-[1440px] mx-[180px]">

@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import {
   Carousel,
@@ -9,7 +8,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { MovieType } from "@/types";
-import { getMovieTrailer } from "./get-data";
 import { CarouselItemComp } from "./CarouselItem";
 
 type CarouselProps = {
@@ -21,7 +19,7 @@ const CarouselSection = ({ movies }: CarouselProps) => {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  // !
+
   React.useEffect(() => {
     if (!api) return;
 
@@ -32,8 +30,6 @@ const CarouselSection = ({ movies }: CarouselProps) => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
-  // console.log("MOVIE ", movies);
-  //
 
   return (
     <Carousel setApi={setApi}>

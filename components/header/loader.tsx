@@ -1,8 +1,6 @@
 import { ThemeToggler } from "../home/ThemeToggler";
-
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import GenreDropDown from "@/components/header/genreDropDown";
-import { Search } from "lucide-react";
 import Link from "next/link";
 import { SearchSection } from "@/components/header/searchSection";
 export default function Loader() {

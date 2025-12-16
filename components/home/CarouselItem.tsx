@@ -35,7 +35,7 @@ export const CarouselItemComp = ({
     );
     const trailer = trailerData.results.find((item) => item.type === "Trailer");
     setIsTrailer(trailer?.key || "");
-    // console.log(trailer, "trailer");
+    
   };
   useEffect(() => {
     GetTrailer();
@@ -45,7 +45,7 @@ export const CarouselItemComp = ({
       <div className="p-1">
         <Card className="py-0 border-none">
           <CardContent className="flex aspect-video h-[600px] justify-center p-0 ">
-            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+           
             <div className="relative w-full h-full">
               <div className="absolute w-[404px] ml-[140px] inter mt-[178px]">
                 <div className="text-white text-base font-normal not-italic h-[24px]">
@@ -66,7 +66,7 @@ export const CarouselItemComp = ({
                 </h2>
                 <Dialog>
                   <DialogTrigger className=" w-[140px] h-[40px] rounded-md bg-white mt-[16px] text-black inter font-medium text-base">
-                    {/* <img className="w-[9px] h-[12px]" src="playIcon.svg"></img> */}
+                    
                     Watch Trailer
                   </DialogTrigger>
                   <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
@@ -88,7 +88,7 @@ export const CarouselItemComp = ({
                 className="object-cover "
               />
             </div>
-            {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
+         
           </CardContent>
         </Card>
       </div>
