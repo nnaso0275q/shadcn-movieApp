@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/home/theme-provider";
-import { Layout } from "lucide-react";
 
 import Footer from "@/components/header/footer";
 import Loader from "@/components/header/loader";
-// import Footer from "@/components/_components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
