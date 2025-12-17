@@ -7,7 +7,8 @@ export default function Footer() {
       <div className="w-full bg-indigo-700 h-fit">
         <div className="py-10 px-20 flex justify-between">
           <div className="space-y-3">
-            <Image alt="Movie Z" src="/Logo.svg"></Image>
+            <Image alt="Movie Z"   width={64}   
+  height={20}  src="/Logo.svg"></Image>
             <h1>© 2024 Movie Z. All Rights Reserved.</h1>
           </div>
           <div className="flex gap-[96px]">

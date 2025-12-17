@@ -33,12 +33,16 @@ export const CarouselItemComp = ({
 
   useEffect(() => {
     const getTrailer = async () => {
-      const trailerData: TrailerResponseType = await getMovieTrailer(id.toString());
-      const trailer = trailerData.results.find((item) => item.type === "Trailer");
+      const trailerData: TrailerResponseType = await getMovieTrailer(
+        id.toString()
+      );
+      const trailer = trailerData.results.find(
+        (item) => item.type === "Trailer"
+      );
       setIsTrailer(trailer?.key || "");
     };
     getTrailer();
-  }, [id]); // зөв dependency нь зөвхөн id
+  }, [id]);
 
   return (
     <CarouselItem>
@@ -82,10 +86,10 @@ export const CarouselItemComp = ({
                 </Dialog>
               </div>
               <Image
-                alt=""
+                alt="svg"
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 className="object-cover"
-                fill
+             fill
               />
             </div>
           </CardContent>
