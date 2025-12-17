@@ -1,6 +1,6 @@
-"use- client ";
-import React, { useEffect } from "react";
-import {  TrailerResponseType } from "@/types";
+"use client";
+import React, { useEffect, useState } from "react";
+import { TrailerResponseType } from "@/types";
 import { getMovieTrailer } from "./get-data";
 import { CarouselItem } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,42 +14,37 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 
-type CarouselItemComp = {
+type CarouselItemCompProps = {
   id: number;
   title: string;
   vote: number;
   overview: string;
   backdrop_path: string;
 };
+
 export const CarouselItemComp = ({
   id,
   title,
   vote,
   overview,
   backdrop_path,
-}: CarouselItemComp) => {
-  const [isTrailer, setIsTrailer] = React.useState("");
+}: CarouselItemCompProps) => {
+  const [isTrailer, setIsTrailer] = useState("");
 
-  const GetTrailer = async () => {
-    const trailerData: TrailerResponseType = await getMovieTrailer(
-      id.toString()
-    );
-    const trailer = trailerData.results.find((item) => item.type === "Trailer");
-    setIsTrailer(trailer?.key || "");
-    
-  };
   useEffect(() => {
-    GetTrailer();
-  }, [GetTrailer]);
+    const getTrailer = async () => {
+      const trailerData: TrailerResponseType = await getMovieTrailer(id.toString());
+      const trailer = trailerData.results.find((item) => item.type === "Trailer");
+      setIsTrailer(trailer?.key || "");
+    };
+    getTrailer();
+  }, [id]); // зөв dependency нь зөвхөн id
 
-
-  
   return (
     <CarouselItem>
       <div className="p-1">
         <Card className="py-0 border-none">
           <CardContent className="flex aspect-video h-[600px] justify-center p-0 ">
-           
             <div className="relative w-full h-full">
               <div className="absolute w-[404px] ml-[140px] inter mt-[178px]">
                 <div className="text-white text-base font-normal not-italic h-[24px]">
@@ -69,8 +64,7 @@ export const CarouselItemComp = ({
                   {overview}
                 </h2>
                 <Dialog>
-                  <DialogTrigger className=" w-[140px] h-[40px] rounded-md bg-white mt-[16px] text-black inter font-medium text-base">
-                    
+                  <DialogTrigger className="w-[140px] h-[40px] rounded-md bg-white mt-[16px] text-black inter font-medium text-base">
                     Watch Trailer
                   </DialogTrigger>
                   <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
@@ -80,7 +74,7 @@ export const CarouselItemComp = ({
                         width="997"
                         height="561"
                         src={`https://www.youtube.com/embed/${isTrailer}`}
-                        title="The Conjuring: Last Rites | Official Trailer"
+                        title={`${title} | Official Trailer`}
                         allowFullScreen
                       ></iframe>
                     </DialogHeader>
@@ -88,12 +82,12 @@ export const CarouselItemComp = ({
                 </Dialog>
               </div>
               <Image
-              alt=""
+                alt=""
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-                className="object-cover "
+                className="object-cover"
+                fill
               />
             </div>
-         
           </CardContent>
         </Card>
       </div>
