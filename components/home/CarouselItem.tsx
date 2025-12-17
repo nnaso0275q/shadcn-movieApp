@@ -1,6 +1,6 @@
 "use- client ";
 import React, { useEffect } from "react";
-import { TrailerResponseType } from "@/types";
+import {  TrailerResponseType } from "@/types";
 import { getMovieTrailer } from "./get-data";
 import { CarouselItem } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,17 +38,9 @@ export const CarouselItemComp = ({
     setIsTrailer(trailer?.key || "");
     
   };
-useEffect(() => {
-  const getTrailer = async () => {
-    const trailerData: TrailerResponseType = await getMovieTrailer(id.toString());
-    const trailer = trailerData.results.find(item => item.type === "Trailer");
-    setIsTrailer(trailer?.key || "");
-  };
-
-  getTrailer();
-}, [id]);
-
-
+  useEffect(() => {
+    GetTrailer();
+  }, [GetTrailer]);
   return (
     <CarouselItem>
       <div className="p-1">
