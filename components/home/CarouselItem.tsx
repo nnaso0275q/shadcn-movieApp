@@ -41,6 +41,9 @@ export const CarouselItemComp = ({
   useEffect(() => {
     GetTrailer();
   }, [GetTrailer]);
+
+
+  
   return (
     <CarouselItem>
       <div className="p-1">
