@@ -1,4 +1,3 @@
-"use state";
 import {
   getNowPlayingMovies,
   getPopularMovies,

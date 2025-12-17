@@ -127,7 +127,7 @@ export const SearchSection = () => {
                 href={`/search?query=${searchValue}`}
                 className="text-sm font-medium hover:underline"
               >
-                See all results for "{searchValue}"
+               {`See all results for "${searchValue}"`}
               </Link>
             </>
           )}

@@ -21,16 +21,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 type DetailDynamicPageProps = {
-  params: Promise<{
+  params: {
     id: string;
     name?: string;
     page?: string;
-  }>;
+  };
 };
 
 export const generateMetadata = async ({ params }: DetailDynamicPageProps) => {
-  const dynamicParams = await params;
-  const id = dynamicParams.id;
+  const id = params.id;
   const movieDetailData = await getMovieDetail(id);
 
   return {
@@ -89,7 +88,6 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           className="w-[290px] h-[428px]"
           src={`${imageBaseUrl}${movieDetailData.poster_path}`}
           alt={movieDetailData.title || "Movie Poster"}
-      
         />
         {/*  */}
         <div className="relative w-[760px] h-[428px]">

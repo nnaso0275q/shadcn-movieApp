@@ -22,6 +22,8 @@ export default async function Home() {
       <MoviesContainer movies={upcoming} title="Upcoming" />
       <MoviesContainer movies={popular} title="Popular" />
       <MoviesContainer movies={topRated} title="Top Rated" />
+      <MoviesContainer movies={nowPlaying} title="Now Playing" />
+
       </div>
     </>
   );
