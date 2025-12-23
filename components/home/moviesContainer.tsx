@@ -49,6 +49,7 @@ export default function MoviesContainer({ movies, title }: Props) {
                         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         alt={movie.title}
                         className="w-[230px] object-cover rounded-t-2xl"
+                        quality={100}
                         width={64}
                         height={20}
                       />

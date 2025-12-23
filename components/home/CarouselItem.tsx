@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TrailerResponseType } from "@/types";
 import { getMovieTrailer } from "./get-data";
 import { CarouselItem } from "@/components/ui/carousel";
@@ -50,7 +50,7 @@ export const CarouselItemComp = ({
         <Card className="py-0 border-none">
           <CardContent className="flex aspect-video h-[600px] justify-center p-0 ">
             <div className="relative w-full h-full">
-              <div className="absolute w-[404px] ml-[140px] inter mt-[178px]">
+              <div className="absolute z-10 w-[404px] ml-[140px] mt-[178px]">
                 <div className="text-white text-base font-normal not-italic h-[24px]">
                   Now Playing :
                 </div>
@@ -89,7 +89,8 @@ export const CarouselItemComp = ({
                 alt="svg"
                 src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 className="object-cover"
-             fill
+                quality={100}
+                fill
               />
             </div>
           </CardContent>

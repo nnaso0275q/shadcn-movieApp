@@ -17,13 +17,12 @@ export default async function Home() {
   return (
     <>
       <CarouselSection movies={upcoming} />
-      
-      <div className="max-w-fit mx-auto">
-      <MoviesContainer movies={upcoming} title="Upcoming" />
-      <MoviesContainer movies={popular} title="Popular" />
-      <MoviesContainer movies={topRated} title="Top Rated" />
-      <MoviesContainer movies={nowPlaying} title="Now Playing" />
 
+      <div className="max-w-fit mx-auto">
+        <MoviesContainer movies={upcoming} title="Upcoming" />
+        <MoviesContainer movies={popular} title="Popular" />
+        <MoviesContainer movies={topRated} title="Top Rated" />
+        <MoviesContainer movies={nowPlaying} title="Now Playing" />
       </div>
     </>
   );

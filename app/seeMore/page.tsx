@@ -47,5 +47,4 @@ const SeeMorePage = async ({ searchParams: { title } }: Props) => {
   );
 };
 
-
 export default SeeMorePage;

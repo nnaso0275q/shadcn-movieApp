@@ -83,9 +83,10 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
         </div>
       </div>
 
-      <div className="w-full flex justify-between">
+      <div className="w-full flex gap-10">
         <Image
-          className="w-[290px] h-[428px]"
+          width={290}
+          height={428}
           src={`${imageBaseUrl}${movieDetailData.poster_path}`}
           alt={movieDetailData.title || "Movie Poster"}
         />
@@ -94,7 +95,12 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           <div className="absolute mt-[364px] flex items-center">
             <Dialog>
               <DialogTrigger className=" w-[40] h-[40] rounded-full bg-white ml-[24px] ">
-                <Image alt="" src="/playIcon.svg"></Image>
+                <Image
+                  alt="playIcon"
+                  width={40}
+                  height={40}
+                  src="/playIcon.svg"
+                ></Image>
               </DialogTrigger>
               <DialogContent className="flex justify-center items-center sm:max-w-[997px] p-0">
                 <DialogHeader>
@@ -117,7 +123,9 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
           </div>
           <Image
             className="w-full h-full object-cover"
-            alt=""
+            width={760}
+            height={428}
+            alt="url"
             src={`${imageBaseUrl}${movieDetailData.backdrop_path}`}
           />
         </div>
@@ -167,6 +175,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             {stars.map((s) => (
               <div key={s.id} className="flex flex-col items-center">
                 <Image
+                  width={80}
+                  height={100}
                   src={`https://image.tmdb.org/t/p/w200${s.profile_path}`}
                   alt={s.name}
                   className="w-[80px] h-[100px] object-cover rounded-md"
@@ -197,6 +207,7 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
       </div>
       {/* '''''''''''''''' */}
 
+      {/* More Like this */}
       <div className="justify-between flex mt-[32px]">
         <h2 className=" text-2xl font-semibold ">More like this</h2>
         <button className="text-sm  hover:underline">
@@ -220,6 +231,8 @@ const DetailDynamicPage = async ({ params }: DetailDynamicPageProps) => {
             >
               <CardContent className="p-0">
                 <Image
+                  width={230}
+                  height={200}
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
                   className="w-[230px] object-cover rounded-t-2xl "
